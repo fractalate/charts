@@ -1,0 +1,6 @@
+.overlay {
+  overflow: hide;
+}
+.overlay:last-of-type {
+  overflow: auto;
+}
