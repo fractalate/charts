@@ -1,19 +1,9 @@
-import './index.css'
-import { ChartAPI } from './lib/api'
-import ChartCardList from './components/ChartCardList';
-import Page from './components/Page';
+import './index.css';
 import Overlay from './components/Overlay';
+import PageMain from './pages/PageMain';
 
-const api = new ChartAPI();
-
-function App() {
-  const charts = api.queryCharts(); // TODO: Temporarily not an async function and there's no loading indicator on startup yet.
+export default function App() {
   return <Overlay>
-    <Page>
-      <ChartCardList charts={charts} />
-    </Page>
-  </Overlay>
-  ;
+    <PageMain/>
+  </Overlay>;
 }
-
-export default App
