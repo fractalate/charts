@@ -1,30 +1,33 @@
-import { ChartDescriptor, ChartLoaded } from "./types";
+import { ChartRef, ChartLoaded } from "./types";
 
 const charts: ChartLoaded[] = [
   {
-    ov: 'chart:0',
-    chartId: '0',
+    ov: 'charts.chart:1.0',
+    id: '0',
+    rv: '9',
     code: 'RDMP0001',
-    name: '',
+    name: 'Red Ted',
     lastNote: null,
     tags: ['RED MAPLE', 'ACER RUBRUM'],
   },
   {
-    ov: 'chart:0',
-    chartId: '1',
+    ov: 'charts.chart:1.0',
+    id: '1',
+    rv: '3',
     code: 'G1A1',
-    name: '',
+    name: 'Ol\' Appie',
     lastNote: new Date(),
     tags: ['APPLE'],
   },
 ];
 
 export class ChartAPI {
-  queryCharts(): ChartDescriptor[] {
+  async queryCharts(): Promise<ChartRef[]> {
     return charts.map((chart) => {
       return {
-        ov: 'cd:0',
-        chartId: chart.chartId,
+        ov: 'charts.chart.ref:1.0',
+        id: chart.id,
+        rv: chart.rv,
         code: chart.code,
         name: chart.name,
         lastNote: chart.lastNote,
@@ -33,12 +36,12 @@ export class ChartAPI {
     });
   }
 
-  async loadChart(chartId: string): Promise<ChartLoaded> {
+  async loadChart(id: string): Promise<ChartLoaded> {
     return new Promise((resolve, reject) => {
-      // TODO: Simulated delay.
+      // TODO: Remove this simulated delay.
       setTimeout(() => {
         for (const chart of charts) {
-          if (chart.chartId == chartId) {
+          if (chart.id == id) {
             resolve(chart);
             return;
           }
